@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallaxInfiniteScroller.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCharacter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SfmlDebugDraw.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsBlock.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsTestState.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="DumDumState.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1State.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ParallaxInfiniteScroller.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCharacter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SfmlDebugDraw.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsBlock.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitsConversion.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsTestState.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DumDumState.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1State.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{807b1b79-74bf-4a27-b893-b0a82abfce25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{9c51586e-b0e4-46fb-afee-681880c8e932}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

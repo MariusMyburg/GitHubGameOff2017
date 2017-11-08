@@ -1,2 +1,2 @@
-# GitHubGameOff2017
-GitHub Game-Off 2017
+# GithubGameOff2017
+My Great Grandfather was a Viking
