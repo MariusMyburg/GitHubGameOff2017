@@ -3,6 +3,7 @@
 #include "ParallaxInfiniteScroller.h"
 #include "PlayerCharacter.h"
 #include "PhysicsBlock.h"
+#include "OverlapCallbackRectangleManager.h"
 
 class Level1State : public State
 {
@@ -31,5 +32,10 @@ private:
 
     PlayerCharacter* mptrPlayer;
     b2World* mptrBox2DWorld;
+
+    //OverlapCallbackRectangleManager* mptrOverlapCallbackRectangleManager;
+
+    OverlapCallbackRectangle* mptrRect1;
+    OverlapCallbackRectangle* mptrRect2;
 };
 

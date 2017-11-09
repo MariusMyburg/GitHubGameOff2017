@@ -9,6 +9,7 @@
 #include "PlayerCharacter.h"
 #include "StateMachine.h"
 
+
 class Game
 {
 private:
@@ -35,9 +36,9 @@ private:
 
     sf::RenderWindow* mptrWindow;
     sf::View* mptrCamera;
-    //b2World* mptrBox2DWorld;
-    
+        
     StateMachine* mptrStateMachine;
+
 
     void Loop();
 };

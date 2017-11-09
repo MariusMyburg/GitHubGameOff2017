@@ -6,6 +6,7 @@
 #include "AssetManager.h"
 #include "Game.h"
 #include "SfmlDebugDraw.h"
+#include "OverlapCallbackRectangle.h"
 
 
 Level1State::Level1State()
@@ -36,8 +37,8 @@ void Level1State::Initialize()
     mptrShip->GetRightAnimatedSprite()->SetPosition(700, 0);
     
     mptrPlayer = new PlayerCharacter(Game::Instance()->GetRenderWindow(), mptrBox2DWorld, 200, 10);    
-    //mptrPlayer->SetPosition(100, 0);
-        
+    
+                
 
     mvecBlocks.push_back(new PhysicsBlock(Game::Instance()->GetRenderWindow(), "C:\\Users\\Marius\\source\\repos\\GithubGameOff2017\\Images\\tile.png", mptrBox2DWorld, b2BodyType::b2_staticBody, 200, 600));
     mvecBlocks.push_back(new PhysicsBlock(Game::Instance()->GetRenderWindow(), "C:\\Users\\Marius\\source\\repos\\GithubGameOff2017\\Images\\tile.png", mptrBox2DWorld, b2BodyType::b2_staticBody, 300, 600));
@@ -58,10 +59,18 @@ void Level1State::Initialize()
     mptrGrass->GetLeftAnimatedSprite()->SetPosition(sf::Vector2f(mptrGrass->GetLeftAnimatedSprite()->GetPosition().x, 550));
     mptrGrass->GetMiddleAnimatedSprite()->SetPosition(sf::Vector2f(mptrGrass->GetMiddleAnimatedSprite()->GetPosition().x, 550));
     mptrGrass->GetRightAnimatedSprite()->SetPosition(sf::Vector2f(mptrGrass->GetRightAnimatedSprite()->GetPosition().x, 550));
+
+
+
+
+
+    
 }
 
 void Level1State::Update(float dt)
-{    
+{
+    OverlapCallbackRectangleManager::Instance()->Update();
+
     mptrBackground->RearangeSpritesBasedOnCameraPosition();
     mptrMountains_fg->RearangeSpritesBasedOnCameraPosition();
     mptrGround->RearangeSpritesBasedOnCameraPosition();

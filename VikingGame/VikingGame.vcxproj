@@ -153,6 +153,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level1State.h" />
+    <ClInclude Include="OverlapCallbackRectangle.h" />
+    <ClInclude Include="OverlapCallbackRectangleManager.h" />
     <ClInclude Include="ParallaxInfiniteScroller.h" />
     <ClInclude Include="PhysicsBlock.h" />
     <ClInclude Include="PhysicsTestState.h" />
@@ -172,6 +174,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level1State.cpp" />
+    <ClCompile Include="OverlapCallbackRectangle.cpp" />
+    <ClCompile Include="OverlapCallbackRectangleManager.cpp" />
     <ClCompile Include="ParallaxInfiniteScroller.cpp" />
     <ClCompile Include="PhysicsBlock.cpp" />
     <ClCompile Include="PhysicsTestState.cpp" />

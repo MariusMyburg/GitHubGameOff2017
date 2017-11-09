@@ -46,6 +46,12 @@
     <ClCompile Include="Level1State.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="OverlapCallbackRectangle.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlapCallbackRectangleManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h">
@@ -97,6 +103,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Level1State.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapCallbackRectangle.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapCallbackRectangleManager.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
