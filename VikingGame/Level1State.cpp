@@ -23,6 +23,17 @@ Level1State::Level1State()
 
 Level1State::~Level1State()
 {
+    delete mptrBox2DWorld;
+    delete mptrBackground;
+    delete mptrMountains_fg;
+    delete mptrGround;
+    delete mptrGrass;
+    delete mptrCactus;
+    delete mptrShip;
+    delete mptrPlayer;
+    mvecBlocks.clear();
+    delete mptrRect1;
+    delete mptrRect2;
 }
 
 void Level1State::Initialize()
@@ -55,11 +66,11 @@ void Level1State::Initialize()
     
     
 
-    sf::Font* font = AssetManager::Instance()->GetFont("../KeepCalm-Medium.ttf");
+    /*sf::Font* font = AssetManager::Instance()->GetFont("../KeepCalm-Medium.ttf");
     sf::Text debugText;    
     debugText.setCharacterSize(24);
     debugText.setFont(*font);
-    debugText.setPosition(30, 30);
+    debugText.setPosition(30, 30);*/
 
 
 

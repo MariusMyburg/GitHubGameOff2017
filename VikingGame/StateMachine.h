@@ -9,7 +9,7 @@ class StateMachine
 {
 public:
     StateMachine() { };
-    ~StateMachine() { };
+    ~StateMachine();
 
     void AddState(State* state, bool isReplacing);
     void RemoveTopState();

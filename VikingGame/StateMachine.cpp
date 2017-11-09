@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "StateMachine.h"
 
+StateMachine::~StateMachine()
+{
+    while (mStates.size() > 0)
+    {        
+        mStates.pop();
+    }
+}
+
 void StateMachine::AddState(State* state, bool isReplacing)
 {
     if (isReplacing)

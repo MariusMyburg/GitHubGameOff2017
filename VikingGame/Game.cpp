@@ -106,4 +106,7 @@ void Game::Run()
                 
         mptrWindow->display();
     }
+
+
+    delete mptrStateMachine;
 }
