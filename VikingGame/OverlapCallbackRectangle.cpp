@@ -5,8 +5,9 @@
 
 
 
-OverlapCallbackRectangle::OverlapCallbackRectangle(void(*onOverlap)(OverlapCallbackRectangle* ptrSelf, OverlapCallbackRectangle* ptrOther), void* ptrData)
+OverlapCallbackRectangle::OverlapCallbackRectangle(double x, double y, double w, double h, void(*onOverlap)(OverlapCallbackRectangle* ptrSelf, OverlapCallbackRectangle* ptrOther), void* ptrData)
 {
+    mRectangle = sf::Rect<double>(x - (w/2.f), y - (h/2.f), w, h);
     mfnOnOverlap = onOverlap;
     mptrData = ptrData;
     OverlapCallbackRectangleManager::Instance()->RegisterRectangle(this);

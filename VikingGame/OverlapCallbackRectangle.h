@@ -5,7 +5,7 @@
 class OverlapCallbackRectangle
 {
 public:
-    OverlapCallbackRectangle(void (*onOverlap)(OverlapCallbackRectangle* ptrSelf, OverlapCallbackRectangle* ptrOther), void* ptrData);
+    OverlapCallbackRectangle(double x, double y, double w, double h, void (*onOverlap)(OverlapCallbackRectangle* ptrSelf, OverlapCallbackRectangle* ptrOther), void* ptrData);
     ~OverlapCallbackRectangle();
 
     sf::Rect<double> getSFMLRectangle()

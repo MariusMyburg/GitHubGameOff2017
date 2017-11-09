@@ -20,6 +20,11 @@ void OverlapCallbackRectangleManager::RegisterRectangle(OverlapCallbackRectangle
     mvecRegisteredRectangels.push_back(rect);
 }
 
+std::vector<OverlapCallbackRectangle*> OverlapCallbackRectangleManager::getRegisteredRectangles() const
+{
+    return mvecRegisteredRectangels;
+}
+
 void OverlapCallbackRectangleManager::Update()
 {
     CheckForOverlaps();

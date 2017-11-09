@@ -11,6 +11,7 @@ public:
     static OverlapCallbackRectangleManager* Instance();
 
     void RegisterRectangle(OverlapCallbackRectangle* rect);
+    std::vector<OverlapCallbackRectangle*> getRegisteredRectangles() const;
 
     // Be sure to call this from your game loop.
     void Update();
