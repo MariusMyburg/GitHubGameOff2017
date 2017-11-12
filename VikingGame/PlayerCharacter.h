@@ -12,6 +12,7 @@ public:
     void Update(float dt) override;
 
 private:
-    bool mbWalking;
+    bool mbWalkingForwards;
+    bool mbWalkingBackwards;
 };
 

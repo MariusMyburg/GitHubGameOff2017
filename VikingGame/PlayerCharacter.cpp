@@ -1,37 +1,52 @@
 #include "stdafx.h"
 #include "PlayerCharacter.h"
 #include "SFMLDebugDraw.h"
+#include "Game.h"
 
 
 PlayerCharacter::PlayerCharacter(sf::RenderWindow* renderWindow, b2World* ptrBox2DWorld, double posx, double posy): Character(renderWindow, ptrBox2DWorld)
 {
+    Game::Instance()->setPlayerCharacter(this);
+
     /* IDLE */
-    AnimatedSprite* idleAnimatedSprite = AddAnimatedSprite("Idle", 1);
-    idleAnimatedSprite->AddFrame("../Images/Viking/Small/1_IDLE_000_result.png");
-    /*idleAnimatedSprite->AddFrame("../Images/Viking/Small/1_IDLE_001_result.png");
-    idleAnimatedSprite->AddFrame("../Images/Viking/Small/1_IDLE_002_result.png");
-    idleAnimatedSprite->AddFrame("../Images/Viking/Small/1_IDLE_003_result.png");
-    idleAnimatedSprite->AddFrame("../Images/Viking/Small/1_IDLE_004_result.png");*/
+    AnimatedSprite* idleAnimatedSprite = AddAnimatedSprite("Idle", 0.5f);    
+    idleAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/1_IDLE_000_colorer.png");
+    idleAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/1_IDLE_001_colorer.png");
+    idleAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/1_IDLE_002_colorer.png");
+    idleAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/1_IDLE_003_colorer.png");
+    idleAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/1_IDLE_004_colorer.png");
+
+
 
     /* WALK */
     AnimatedSprite* walkAnimatedSprite = AddAnimatedSprite("Walk", 5);
-    walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_000_result.png");
-    /*walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_001_result.png");
+    /*walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_000_result.png");
+    walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_001_result.png");
     walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_002_result.png");
     walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_003_result.png");
     walkAnimatedSprite->AddFrame("../Images/Viking/Small/2_WALK_004_result.png");*/
+    walkAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/2_WALK_000_colorer.png");
+    walkAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/2_WALK_001_colorer.png");
+    walkAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/2_WALK_002_colorer.png");
+    walkAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/2_WALK_003_colorer.png");
+    walkAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/2_WALK_004_colorer.png");
 
     /* JUMP */
     AnimatedSprite* jumpAnimatedSprite = AddAnimatedSprite("Jump", 1);
-    jumpAnimatedSprite->AddFrame("../Images/Viking/Small/4_JUMP_000_result.png");
+    //jumpAnimatedSprite->AddFrame("../Images/Viking/Small/4_JUMP_000_result.png");
     /*jumpAnimatedSprite->AddFrame("../Images/Viking/Small/4_JUMP_001_result.png");
     jumpAnimatedSprite->AddFrame("../Images/Viking/Small/4_JUMP_002_result.png");
     jumpAnimatedSprite->AddFrame("../Images/Viking/Small/4_JUMP_003_result.png");
     jumpAnimatedSprite->AddFrame("../Images/Viking/Small/4_JUMP_004_result.png");*/
+    jumpAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/4_JUMP_000_colorer.png");
+    jumpAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/4_JUMP_001_colorer.png");
+    jumpAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/4_JUMP_002_colorer.png");
+    jumpAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/4_JUMP_003_colorer.png");
+    jumpAnimatedSprite->AddFrame("C:/Users/Marius/Desktop/GameArt_Processed/craftpix-339912-2d-fantasy-wizards-sprite-sheets/PNG/1_WIZARD/resized/4_JUMP_004_colorer.png");
 
-    
-    
     RegisterForPhysics(GetBox2DWorld(), b2BodyType::b2_dynamicBody, 1, posx, posy);
+
+    GetBox2DWorld()->SetContactListener(mptrContactListener);
 
     EnablePhysics();
 }
@@ -45,11 +60,11 @@ void PlayerCharacter::Update(float dt)
 {
     Character::Update(dt);
     
-    if (mbWalking && !IsInAir())
+    if (mbWalkingForwards && !IsInAir())
     {
-        SetCurrentAnimation("Walk");
-        SetPhysicsPosition(GetPhysicsPosition().x + 0.01f, GetPhysicsPosition().y);
-    }else if (!mbWalking && !IsInAir())
+        SetCurrentAnimation("Walk");        
+        //SetPhysicsPosition(GetPhysicsPosition().x + 0.001f, GetPhysicsPosition().y);
+    }else if (!mbWalkingForwards && !mbWalkingBackwards && !IsInAir())
     {
         SetCurrentAnimation("Idle");
         //SetPhysicsPosition(GetPhysicsPosition().x, GetPhysicsPosition().y);
@@ -62,7 +77,8 @@ void PlayerCharacter::Update(float dt)
 
 void PlayerCharacter::HandleInput()
 {
-    mbWalking = false;
+    mbWalkingForwards = false;
+    mbWalkingBackwards = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {
@@ -71,11 +87,15 @@ void PlayerCharacter::HandleInput()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
     {
-        mbWalking = true;
+        mbWalkingForwards = false;
+        mbWalkingBackwards = true;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
     {
-        mbWalking = true;
+        mbWalkingForwards = true;
+        mbWalkingBackwards = false;
+
+        getPhysicsBody()->ApplyForceToCenter(b2Vec2(0.005f, 0), true);
     }
 }

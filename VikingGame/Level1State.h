@@ -22,11 +22,11 @@ public:
 
 private:
     ParallaxInfiniteScroller* mptrBackground;
-    ParallaxInfiniteScroller* mptrMountains_fg;
+    //ParallaxInfiniteScroller* mptrMountains_fg;
     ParallaxInfiniteScroller* mptrGround;
     ParallaxInfiniteScroller* mptrGrass;
-    ParallaxInfiniteScroller* mptrCactus;
-    ParallaxInfiniteScroller* mptrShip;
+    //ParallaxInfiniteScroller* mptrCactus;
+    //ParallaxInfiniteScroller* mptrShip;
 
     std::vector<PhysicsBlock*> mvecBlocks;
 

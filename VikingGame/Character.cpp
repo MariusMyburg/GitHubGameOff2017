@@ -75,15 +75,17 @@ void Character::Jump()
     b2Body* body = mptrb2Body; //GetAnimatedSpriteForID(mstrCurrentAnimationID)->GetPhysicsBody();
     if (!IsInAir())
     {
-        float impulse = body->GetMass() * 1;
+        float impulse = body->GetMass() * 0.05;
         body->ApplyLinearImpulse(b2Vec2(0,-impulse), body->GetWorldCenter(), true);
     }
 }
 
 bool Character::IsInAir()
 {
-    b2Body* body = mptrb2Body; //GetAnimatedSpriteForID(mstrCurrentAnimationID)->GetPhysicsBody();
-    return (body->GetLinearVelocity().y != 0);
+    //b2Body* body = mptrb2Body; //GetAnimatedSpriteForID(mstrCurrentAnimationID)->GetPhysicsBody();
+    //return (abs(body->GetLinearVelocity().y) > 0);
+
+    return miFootContacts == 0;
 }
 
 void Character::Update(float dt)
@@ -112,6 +114,10 @@ void Character::Draw(sf::RenderStates states)
 {
     GetAnimatedSpriteForID(mstrCurrentAnimationID)->Draw(states);
 }
+
+
+
+
 
 
 void Character::RegisterForPhysics(b2World* ptrWorld, b2BodyType type, float mass, double posx, double posy)
@@ -146,6 +152,8 @@ void Character::RegisterForPhysics(b2World* ptrWorld, b2BodyType type, float mas
     def.position.Set(posx/sfdd::PIXELS_PER_METER, posy/sfdd::PIXELS_PER_METER);
     def.type = type;
     def.userData = this;    
+    def.fixedRotation = true;
+    def.linearDamping = 1.0f;
     mptrb2Body = ptrWorld->CreateBody(&def);
 
     b2PolygonShape* shape = new b2PolygonShape();
@@ -159,8 +167,29 @@ void Character::RegisterForPhysics(b2World* ptrWorld, b2BodyType type, float mas
     fixtureDef.shape = shape;
     fixtureDef.density = 1;    
     //fixtureDef.restitution = 0.8f;
-    fixtureDef.userData = this;
+    fixtureDef.userData = this;    
     mptrFixture = mptrb2Body->CreateFixture(&fixtureDef);
+
+
+    b2CircleShape* circle = new b2CircleShape();
+    circle->m_radius = 0.1;
+    circle->m_p.y = 0.1f;
+    
+    fixtureDef.shape = circle;
+    fixtureDef.density = 1;
+    mptrb2Body->CreateFixture(&fixtureDef);
+
+
+    //add foot sensor fixture
+    b2PolygonShape polygonShape;
+      polygonShape.SetAsBox(0.1, 0.02, b2Vec2(0,0.2), 0);
+      fixtureDef.isSensor = true;
+      fixtureDef.shape = &polygonShape;
+      b2Fixture* footSensorFixture = mptrb2Body->CreateFixture(&fixtureDef);
+      footSensorFixture->SetUserData( (void*)3 );
+
+
+    mptrContactListener = new Character::MyContactListener(this);
 
 
     DisablePhysics();
@@ -190,6 +219,16 @@ void Character::DisablePhysics()
 void Character::EnablePhysics()
 {
     mptrb2Body->SetActive(true);
+}
+
+b2Body * Character::getPhysicsBody() const
+{
+    return mptrb2Body;
+}
+
+double Character::getVelocity()
+{
+    return getPhysicsBody()->GetLinearVelocity().x;
 }
 
 std::vector<std::string> Character::AnimationIDs() const

@@ -13,7 +13,6 @@ Game::Game(int width, int height)
     miHeight = height;
     mptrCamera = new sf::View(sf::Vector2f(width/2.0f, height/2.0f), sf::Vector2f(width, height));
     mptrStateMachine = new StateMachine();
-    //mptrBox2DWorld = new b2World(*new b2Vec2(0, 1.1f));
 }
 
 
@@ -37,6 +36,11 @@ Game * Game::Instance(int width, int height)
 //    return mptrCamera;
 //}
 
+sf::View * Game::GetCamera()
+{
+    return mptrCamera;
+}
+
 StateMachine * Game::GetStateMachine()
 {
     return mptrStateMachine;
@@ -47,11 +51,21 @@ sf::RenderWindow * Game::GetRenderWindow()
     return mptrWindow;
 }
 
+int Game::getWidth()
+{
+    return miWidth;
+}
+
+int Game::getHeight()
+{
+    return miHeight;
+}
+
 void Game::Initialize()
 {
     mptrWindow = new sf::RenderWindow();
-    mptrWindow->create(sf::VideoMode(miWidth, miHeight, 32), "My Great Great Grandpa was a Viking", sf::Style::Fullscreen);
-    //mptrWindow->setFramerateLimit(60);
+    mptrWindow->create(sf::VideoMode(miWidth, miHeight, 32), "My Great Great Grandpa was a Viking", sf::Style::Default);
+    //mptrWindow->setFramerateLimit(120);
 }
 
 void Game::Run()
@@ -109,4 +123,14 @@ void Game::Run()
 
 
     delete mptrStateMachine;
+}
+
+void Game::setPlayerCharacter(PlayerCharacter * player)
+{
+    mptrPlayerCharacter = player;
+}
+
+PlayerCharacter * Game::getPlayerCharacter() const
+{
+    return mptrPlayerCharacter;
 }

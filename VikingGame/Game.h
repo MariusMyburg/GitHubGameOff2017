@@ -25,9 +25,14 @@ public:
     StateMachine* GetStateMachine();
     sf::RenderWindow* GetRenderWindow();
 
+    int getWidth();
+    int getHeight();
+
     void Initialize();
     void Run();
 
+    void setPlayerCharacter(PlayerCharacter* player);
+    PlayerCharacter* getPlayerCharacter() const;
 
 private:
     bool mbIsRunning;
@@ -38,8 +43,7 @@ private:
     sf::View* mptrCamera;
         
     StateMachine* mptrStateMachine;
+    PlayerCharacter* mptrPlayerCharacter;
 
-
-    void Loop();
 };
 

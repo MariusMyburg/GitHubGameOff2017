@@ -2,6 +2,7 @@
 #include "ParallaxInfiniteScroller.h"
 #include "AnimatedSprite.h"
 #include "AssetManager.h"
+#include "Game.h"
 
 
 ParallaxInfiniteScroller::ParallaxInfiniteScroller(sf::RenderWindow* renderWindow, const std::string backgroundImageFile, float fMovementMultiplier, bool repeat)
@@ -41,15 +42,15 @@ void ParallaxInfiniteScroller::MoveLeft()
     //mView.move(-0.6f * mfMovementMultiplier, 0);
     float x = mptrLeftSprite->GetPosition().x;
     float y = mptrLeftSprite->GetPosition().y;
-    mptrLeftSprite->SetPosition(sf::Vector2f(x + (-0.6f * mfMovementMultiplier), y));
+    mptrLeftSprite->SetPosition(sf::Vector2f(x + (-Game::Instance()->getPlayerCharacter()->getVelocity() * mfMovementMultiplier), y));
 
     x = mptrMiddleSprite->GetPosition().x;
     y = mptrMiddleSprite->GetPosition().y;
-    mptrMiddleSprite->SetPosition(sf::Vector2f(x + (-0.6f * mfMovementMultiplier), y));
+    mptrMiddleSprite->SetPosition(sf::Vector2f(x + (-Game::Instance()->getPlayerCharacter()->getVelocity() * mfMovementMultiplier), y));
 
     x = mptrRightSprite->GetPosition().x;
     y = mptrRightSprite->GetPosition().y;
-    mptrRightSprite->SetPosition(sf::Vector2f(x + (-0.6f * mfMovementMultiplier), y));
+    mptrRightSprite->SetPosition(sf::Vector2f(x + (-Game::Instance()->getPlayerCharacter()->getVelocity() * mfMovementMultiplier), y));
 }
 
 void ParallaxInfiniteScroller::MoveRight()
@@ -57,15 +58,15 @@ void ParallaxInfiniteScroller::MoveRight()
     //mView.move(0.6f * mfMovementMultiplier, 0);
     float x = mptrLeftSprite->GetPosition().x;
     float y = mptrLeftSprite->GetPosition().y;
-    mptrLeftSprite->SetPosition(sf::Vector2f(x + (0.6f * mfMovementMultiplier), y));
+    mptrLeftSprite->SetPosition(sf::Vector2f(x + (Game::Instance()->getPlayerCharacter()->getVelocity() * mfMovementMultiplier), y));
 
     x = mptrMiddleSprite->GetPosition().x;
     y = mptrMiddleSprite->GetPosition().y;
-    mptrMiddleSprite->SetPosition(sf::Vector2f(x + (0.6f * mfMovementMultiplier), y));
+    mptrMiddleSprite->SetPosition(sf::Vector2f(x + (Game::Instance()->getPlayerCharacter()->getVelocity() * mfMovementMultiplier), y));
 
     x = mptrRightSprite->GetPosition().x;
     y = mptrRightSprite->GetPosition().y;
-    mptrRightSprite->SetPosition(sf::Vector2f(x + (0.6f * mfMovementMultiplier), y));
+    mptrRightSprite->SetPosition(sf::Vector2f(x + (Game::Instance()->getPlayerCharacter()->getVelocity() * mfMovementMultiplier), y));
 }
 
 void ParallaxInfiniteScroller::RearangeSpritesBasedOnCameraPosition()

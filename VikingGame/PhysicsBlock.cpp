@@ -34,6 +34,7 @@ PhysicsBlock::PhysicsBlock(sf::RenderWindow* renderWindow, std::string filename,
     fixtureDef.shape = mptrb2Shape;
     fixtureDef.density = 1;    
     //fixtureDef.restitution = 0.8f;
+    fixtureDef.friction = 0.0f;
     fixtureDef.userData = this;
     mptrFixture = mptrb2Body->CreateFixture(&fixtureDef);
 }

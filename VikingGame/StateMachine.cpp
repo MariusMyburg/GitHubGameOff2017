@@ -5,6 +5,8 @@ StateMachine::~StateMachine()
 {
     while (mStates.size() > 0)
     {        
+        State* top = mStates.top();
+        delete top;
         mStates.pop();
     }
 }
