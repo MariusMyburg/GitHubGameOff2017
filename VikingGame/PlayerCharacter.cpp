@@ -62,16 +62,13 @@ void PlayerCharacter::Update(float dt)
     
     if (mbWalkingForwards && !IsInAir())
     {
-        SetCurrentAnimation("Walk");        
-        //SetPhysicsPosition(GetPhysicsPosition().x + 0.001f, GetPhysicsPosition().y);
+        SetCurrentAnimation("Walk");
     }else if (!mbWalkingForwards && !mbWalkingBackwards && !IsInAir())
     {
         SetCurrentAnimation("Idle");
-        //SetPhysicsPosition(GetPhysicsPosition().x, GetPhysicsPosition().y);
     }else if (IsInAir())
     {
         SetCurrentAnimation("Jump");
-        //SetPhysicsPosition(GetPhysicsPosition().x, GetPhysicsPosition().y);
     }
 }
 

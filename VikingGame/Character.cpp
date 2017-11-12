@@ -71,7 +71,6 @@ void Character::SetCurrentAnimation(std::string animationID)
             sprite.second->DisablePhysics();            
         }
 
-        //SetPhysicsPosition(prevAnimatedSptire->GetPhysicsPosition().x, prevAnimatedSptire->GetPhysicsPosition().y);
         EnablePhysics();
     }
 
@@ -84,9 +83,8 @@ std::string Character::GetCurrentAnimation()
 }
 
 void Character::Jump()
-{
-    //to change velocity by 10
-    b2Body* body = mptrb2Body; //GetAnimatedSpriteForID(mstrCurrentAnimationID)->GetPhysicsBody();
+{    
+    b2Body* body = mptrb2Body;
     if (!IsInAir())
     {
         float impulse = body->GetMass() * 0.05;
@@ -96,9 +94,6 @@ void Character::Jump()
 
 bool Character::IsInAir()
 {
-    //b2Body* body = mptrb2Body; //GetAnimatedSpriteForID(mstrCurrentAnimationID)->GetPhysicsBody();
-    //return (abs(body->GetLinearVelocity().y) > 0);
-
     return miFootContacts == 0;
 }
 
@@ -137,28 +132,7 @@ void Character::Draw(sf::RenderStates states)
 void Character::RegisterForPhysics(b2World* ptrWorld, b2BodyType type, float mass, double posx, double posy)
 {
     mptrBox2DWorld = ptrWorld;
-
-    //b2BodyDef def;
-    //def.gravityScale = 1.0f * mass;
-    ////def.position.Set(mmapAnimatedSprites[GetCurrentAnimation()]->GetSFMLSprite(0)->getTexture()->getSize().x / 2.0f, mmapAnimatedSprites[GetCurrentAnimation()]->GetSFMLSprite(0)->getTexture()->getSize().y / 2.0f);
-    //def.position.Set(posx/sfdd::PIXELS_PER_METER, posy/sfdd::PIXELS_PER_METER);
-    //
-    //def.type = type;    
-    //def.userData = this;    
-    //def.awake = true;
-    ////def.allowSleep = false;
-    //mptrb2Body = ptrWorld->CreateBody(&def);
-    //
-    //
-    //mptrb2ChainShape = new b2ChainShape();
-    //mptrb2ChainShape->CreateChain(&chainVertices[0], chainVertices.size());
-
-    //b2FixtureDef fixtureDef;
-    //fixtureDef.shape = mptrb2ChainShape;
-    //fixtureDef.density = 1.0f;// * mass;    
-    //fixtureDef.userData = this;
-    //mptrFixture = mptrb2Body->CreateFixture(&fixtureDef);
-
+    
     auto texture = mmapAnimatedSprites[GetCurrentAnimation()]->GetSFMLSprite(0)->getTexture();
 
     b2BodyDef def;
@@ -172,22 +146,19 @@ void Character::RegisterForPhysics(b2World* ptrWorld, b2BodyType type, float mas
 
     b2PolygonShape* shape = new b2PolygonShape();
     float x = texture->getSize().x;
-    float y = texture->getSize().y;
+    float y = texture->getSize().y-20;
     shape->SetAsBox((x/sfdd::PIXELS_PER_METER)/2.0f, (y/sfdd::PIXELS_PER_METER)/2.0f);    
-    //shape->SetAsBox(2, 2);    
-    //mptrb2Shape = shape;
         
     b2FixtureDef fixtureDef;
     fixtureDef.shape = shape;
     fixtureDef.density = 1;    
-    //fixtureDef.restitution = 0.8f;
     fixtureDef.userData = this;    
     mptrFixture = mptrb2Body->CreateFixture(&fixtureDef);
 
 
     b2CircleShape* circle = new b2CircleShape();
     circle->m_radius = 0.1;
-    circle->m_p.y = 0.1f;
+    circle->m_p.y = 0.07f;
     
     fixtureDef.shape = circle;
     fixtureDef.density = 1;
