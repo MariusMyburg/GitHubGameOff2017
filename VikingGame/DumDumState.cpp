@@ -17,9 +17,9 @@ void DumDumState::Initialize()
     mBigFont = *AssetManager::Instance()->GetFont("../KeepCalm-Medium.ttf");    
     mBigText.setFont(mBigFont);
     mBigText.setCharacterSize(48);
-    mBigText.setString("My Great Grandfather was a Viking");
+    mBigText.setString("My Game Splash Screen");
     float width = mBigText.getCharacterSize();
-    mBigText.setPosition((1920 / 2) - (width), (1080 / 2));
+    mBigText.setPosition(100 - (width), (800/ 2));
 
     mClock.restart();
 }

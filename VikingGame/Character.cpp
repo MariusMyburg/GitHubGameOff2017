@@ -51,6 +51,20 @@ void Character::SetCurrentAnimation(std::string animationID)
        // AnimatedSprite* prevAnimatedSptire = mmapAnimatedSprites[mstrCurrentAnimationID];
         mstrCurrentAnimationID = animationID;
     
+        for (auto animID: AnimationIDs())
+        {
+            for (int i = 0; i < GetAnimatedSpriteForID(animID)->GetFrameCount(); i++)
+        {
+            GetAnimatedSpriteForID(animID)->GetSFMLSprite(i)->setOrigin(
+            GetAnimatedSpriteForID(animID)->GetSFMLSprite(i)->getTexture()->getSize().x/2.0f,
+            GetAnimatedSpriteForID(animID)->GetSFMLSprite(i)->getTexture()->getSize().y/2.0f);
+
+            GetAnimatedSpriteForID(animID)->GetSFMLSprite(i)->setPosition(
+            (mptrb2Body->GetPosition().x*sfdd::PIXELS_PER_METER),
+            (mptrb2Body->GetPosition().y*sfdd::PIXELS_PER_METER));
+        }
+        }
+
         for(auto sprite : mmapAnimatedSprites)
         {
             sprite.second->MoveToFirstFrame();
